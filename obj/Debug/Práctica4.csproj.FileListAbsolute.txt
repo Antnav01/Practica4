@@ -1,6 +1,0 @@
-C:\Users\usuario_local\Documents\GitHub\Práctica4\bin\Debug\Práctica4.exe.config
-C:\Users\usuario_local\Documents\GitHub\Práctica4\obj\Debug\Práctica4.csprojResolveAssemblyReference.cache
-C:\Users\usuario_local\Documents\GitHub\Práctica4\bin\Debug\Práctica4.exe
-C:\Users\usuario_local\Documents\GitHub\Práctica4\bin\Debug\Práctica4.pdb
-C:\Users\usuario_local\Documents\GitHub\Práctica4\obj\Debug\Práctica4.exe
-C:\Users\usuario_local\Documents\GitHub\Práctica4\obj\Debug\Práctica4.pdb
