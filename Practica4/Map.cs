@@ -15,7 +15,7 @@ namespace WallE
     {
         enum EstadosLectura { LeyendoLugares, LeyendoCalles, LeyendoItems, Fin };
         // items basura
-        struct Item
+        public struct Item
         {
             public string name, description;
         }
@@ -218,6 +218,7 @@ namespace WallE
         {
             if (palabras.Length == 7 && palabras[2] == "place" && palabras[5] == "place")
             {
+
                 int numeroPrimerLugar = int.Parse(palabras[3]),
                     numeroSegundoLugar = int.Parse(palabras[6]);
                 if (numeroPrimerLugar >= 0 && numeroPrimerLugar < nPlaces && numeroSegundoLugar >= 0
@@ -267,7 +268,7 @@ namespace WallE
 
         public void CreateItem(string[] palabras)
         {
-            if (palabras[3] == "place")
+            if (palabras[3] == "place" && palabras.Length > 5)
             {
                 int numeroItem = int.Parse(palabras[1]);
                 if (numeroItem >= 0 && numeroItem < nItems && items[numeroItem].name == "")
@@ -439,6 +440,11 @@ namespace WallE
         public Place Sitio(int pl)
         {
             return places[pl];
+        }
+
+        public Item Objeto(int pl)
+        {
+            return items[pl];
         }
         #endregion
     }

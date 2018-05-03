@@ -55,10 +55,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al dar un lugar fuera de rango.");
             }
-            catch
+            catch (AssertFailedException)
             {
-
+                throw;
             }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -73,10 +74,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al dar un lugar fuera de rango.");
             }
-            catch
+            catch (AssertFailedException)
             {
-
+                throw;
             }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -111,10 +113,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al dar un lugar fuera de rango.");
             }
-            catch
+            catch (AssertFailedException)
             {
-
+                throw;
             }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -129,10 +132,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al dar un lugar fuera de rango.");
             }
-            catch
+            catch (AssertFailedException)
             {
-
+                throw;
             }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -159,7 +163,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
 
         }
 
@@ -175,7 +183,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -226,7 +238,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -241,7 +257,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -280,7 +300,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -295,7 +319,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -346,7 +374,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -361,7 +393,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -412,7 +448,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
         [TestMethod]
         public void TestMoveFueraDeRangoPorArriba()
@@ -426,7 +466,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -464,7 +508,11 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay fallo.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
@@ -478,11 +526,15 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay fallo.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
-        public void TestCreateStreetUnaCalleEnVacio()
+        public void TestCreatePlaceUnaCalleEnVacio()
         {
             //Arrange
             Map.Place esperado;
@@ -509,7 +561,7 @@ namespace TestsMap
         }
 
         [TestMethod]
-        public void TestCreateStreetUnaCalleConUnaYaCreada()
+        public void TestCreatePlaceUnaCalleConUnaYaCreada()
         {
             //Arrange
             Map.Place esperado;
@@ -537,7 +589,7 @@ namespace TestsMap
         }
 
         [TestMethod]
-        public void TestCreateStreetConMenosParametros()
+        public void TestCreatePlaceConMenosParametros()
         {
             //Arrange
             string[] frase = new string[3] { "place", "0", "Nombre0" };
@@ -548,14 +600,18 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al introducir menos parametros.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
-        public void TestCreateStreetRepetida()
+        public void TestCreatePlaceRepetida()
         {
             //Arrange
-            string[] frase = new string[4] { "place", "0", "Nombre1", "SpaceShip" };
+            string[] frase = new string[4] { "place", "0", "Nombre1", "spaceShip" };
             Map m = new Map(2, 1);
             m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
             try
@@ -564,14 +620,18 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al repetir calle.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
-        public void TestCreateStreetParametroSpaceShipMal()
+        public void TestCreatePlaceParametroSpaceShipMal()
         {
             //Arrange
-            string[] frase = new string[4] { "place", "0", "Nombre1", "cosa" };
+            string[] frase = new string[4] { "place", "0", "Nombre1", "SpaceShip" };
             Map m = new Map(2, 1);
             try
             {//Act
@@ -579,14 +639,18 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al escribir mal el parametro spacechip.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
-        public void TestCreateStreetFueraDeRangoPorAbajo()
+        public void TestCreatePlaceFueraDeRangoPorAbajo()
         {
             //Arrange
-            string[] frase = new string[4] { "place", "-1", "Nombre1", "cosa" };
+            string[] frase = new string[4] { "place", "-1", "Nombre1", "spaceShip" };
             Map m = new Map(2, 1);
             try
             {//Act
@@ -594,14 +658,18 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al poner un valor menor que cero en el indice del lugar.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
 
         [TestMethod]
-        public void TestCreateStreetFueraDeRangoPorArriba()
+        public void TestCreatePlaceFueraDeRangoPorArriba()
         {
             //Arrange
-            string[] frase = new string[4] { "place", "2", "Nombre1", "cosa" };
+            string[] frase = new string[4] { "place", "2", "Nombre1", "spaceShip" };
             Map m = new Map(2, 1);
             try
             {//Act
@@ -609,7 +677,415 @@ namespace TestsMap
                 //Assert
                 Assert.Fail("No hay error al poner un valor mayor que el indice maximo del mapa.");
             }
-            catch { }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetSimple()
+        {
+            //Arrange
+
+            int[] dir1 = new int[4] { 1, -1, -1, -1 };
+            int[] dir2 = new int[4] { -1, -1, 0, -1 };
+
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+            //Act
+            m.CreateStreet(new string[7] { "street", "0", "place", "0", "north", "place", "1" });
+            //Assert
+            Assert.AreEqual(m.Sitio(0).connections[0], dir1[0], "El Norte de la primera direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(0).connections[1], dir1[1], "El Este de la primera direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(0).connections[2], dir1[2], "El Sur de la primera direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(0).connections[3], dir1[3], "El Oeste de la primera direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(1).connections[0], dir2[0], "El Norte de la segunda direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(1).connections[1], dir2[1], "El Este de la segunda direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(1).connections[2], dir2[2], "El Sur de la segunda direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(1).connections[3], dir2[3], "El Oeste de la segunda direccion no es el esperado.");
+        }
+
+        [TestMethod]
+        public void TestCreateStreetSobreescritura()
+        {
+            //Arrange
+                        Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+            m.CreateStreet(new string[7] { "street", "0", "place", "0", "north", "place", "1" });
+            try
+            {//Act
+                m.CreateStreet(new string[7] { "street", "0", "place", "0", "north", "place", "2" });
+                //Assert
+                Assert.Fail("No ha habido error al sobreescribir una calle.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetSobreescrituraSinError()
+        {
+            //Arrange
+            int[] dir1 = new int[4] { 1, -1, -1, -1 };
+            int[] dir2 = new int[4] { -1, -1, 0, -1 };
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+            //Act
+            m.CreateStreet(new string[7] { "street", "0", "place", "0", "north", "place", "1" });
+            m.CreateStreet(new string[7] { "street", "0", "place", "1", "south", "place", "0" });
+            //Assert
+            Assert.AreEqual(m.Sitio(0).connections[0], dir1[0], "El Norte de la primera direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(0).connections[1], dir1[1], "El Este de la primera direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(0).connections[2], dir1[2], "El Sur de la primera direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(0).connections[3], dir1[3], "El Oeste de la primera direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(1).connections[0], dir2[0], "El Norte de la segunda direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(1).connections[1], dir2[1], "El Este de la segunda direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(1).connections[2], dir2[2], "El Sur de la segunda direccion no es el esperado.");
+            Assert.AreEqual(m.Sitio(1).connections[3], dir2[3], "El Oeste de la segunda direccion no es el esperado.");
+        }
+
+        [TestMethod]
+        public void TestCreateStreetMenosArgumentos()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+            
+            try
+            {//Act
+                m.CreateStreet(new string[6] { "street", "0", "place", "0", "north", "place" });
+                //Assert
+                Assert.Fail("No ha habido error introducir menos argumentos.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetPrimerEnteroNoParseable()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateStreet(new string[7] { "street", "0", "place", "a", "north", "place", "1" });
+                //Assert
+                Assert.Fail("No ha habido error un entero no parseable en el primer lugar");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetSegundoEnteroNoParseable()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateStreet(new string[7] { "street", "0", "place", "0", "north", "place", "b" });
+                //Assert
+                Assert.Fail("No ha habido error un entero no parseable en el segundo lugar");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetDireccionNoParseable()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateStreet(new string[7] { "street", "0", "place", "0", "norn", "place", "1" });
+                //Assert
+                Assert.Fail("No ha habido error un enetero no parseable en el primer lugar");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetPrimerEnteroFueraDeRango()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateStreet(new string[7] { "street", "0", "place", "-1", "north", "place", "1" });
+                //Assert
+                Assert.Fail("No ha habido error al tener el primer entero fuera de rango.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetSegundoEnteroFueraDeRango()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateStreet(new string[7] { "street", "0", "place", "0", "north", "place", "4" });
+                //Assert
+                Assert.Fail("No ha habido error al tener el segundo entero fuera de rango.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetPalabraClave1Incorrecta()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateStreet(new string[7] { "street", "0", "placce", "0", "north", "place", "1" });
+                //Assert
+                Assert.Fail("No ha habido error al tener el primer place mal escrito.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateStreetPalabraClave2Incorrecta()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateStreet(new string[7] { "street", "0", "place", "0", "north", "plaaace", "1" });
+                //Assert
+                Assert.Fail("No ha habido error al tener el segundo place mal escrito.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) {}
+        }
+
+        [TestMethod]
+        public void TestCreateItemEnBuenLugar()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+            Map.Item esperado0;
+            esperado0.name = "Objeto0";
+            esperado0.description = "Descripcion0";
+            Map.Item esperado1;
+            esperado1.name = "";
+            esperado1.description = "";
+            //Act
+            m.CreateItem(new string[6] { "garbage", "0", "Objeto0", "place", "0", "\"Descripcion0\""});
+            //Assert
+            Assert.AreEqual(esperado0, m.Objeto(0), "Valor del objeto no esperado.");
+            Assert.AreEqual("0: Objeto0 Descripcion0\n", m.GetItemsPlace(0), "El objeto no esta en el sitio.");
+            Assert.AreEqual("", m.GetItemsPlace(1), "El objeto esta en un sitio que no debería.");
+        }
+
+        [TestMethod]
+        public void TestCreateItemPalabraClaveIncorrecta()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateItem(new string[6] { "garbage", "0", "Objeto0", "placcce", "0", "\"Descripcion0\"" });
+                //Assert
+                Assert.Fail("No ha habido error al tener el place mal escrito.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateItemIndiceFueraDeRangoPorArriba()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateItem(new string[6] { "garbage", "5", "Objeto0", "place", "0", "\"Descripcion0\"" });
+                //Assert
+                Assert.Fail("No ha habido error al tener pedir poner un objeto fuera de rango por arriba.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateItemIndiceFueraDeRangoPorAbajo()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateItem(new string[6] { "garbage", "-1", "Objeto0", "place", "0", "\"Descripcion0\"" });
+                //Assert
+                Assert.Fail("No ha habido error al tener pedir poner un objeto fuera de rango por abajo.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateItemIndiceLugarFueraDeRangoPorArriba()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateItem(new string[6] { "garbage", "0", "Objeto0", "place", "3", "\"Descripcion0\"" });
+                //Assert
+                Assert.Fail("No ha habido error al tener pedir poner el objeto en un lugar fuera de rango por arriba.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateItemIndiceLugarFueraDeRangoPorAbajo()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateItem(new string[6] { "garbage", "0", "Objeto0", "place", "-1", "\"Descripcion0\"" });
+                //Assert
+                Assert.Fail("No ha habido error al tener pedir poner el objeto en un lugar fuera de rango por abajo.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateItemSinComillaInicial()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateItem(new string[6] { "garbage", "0", "Objeto0", "place", "0", "Descripcion0\"" });
+                //Assert
+                Assert.Fail("No ha habido error al introducir una descripcion la primera comilla.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void TestCreateItemSinComillaFinal()
+        {
+            //Arrange
+            Map m = new Map(2, 1);
+            m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
+            m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
+
+            try
+            {//Act
+                m.CreateItem(new string[6] { "garbage", "0", "Objeto0", "place", "0", "\"Descripcion0" });
+                //Assert
+                Assert.Fail("No ha habido error al introducir una descripcion la segunda comilla.");
+            }
+            catch (AssertFailedException)
+            {
+                throw;
+            }
+            catch (Exception) { }
         }
     }
 }
