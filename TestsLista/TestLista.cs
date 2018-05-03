@@ -8,7 +8,7 @@ namespace Tests
     public class TestLista
     {
         [TestMethod]
-        public void TestCrearLista1()
+        public void TestCrearListaConElementos()
         {
             //arrange
             string a = "1:2:3:1:2:3:1:2:3";
@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestCrearLista2()
+        public void TestCrearListaVacia()
         {
             //arrange
             string a = "";
@@ -33,7 +33,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestCuentaEltos1()
+        public void TestCuentaEltosVacia()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(0, 0);
@@ -45,7 +45,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestCuentaEltos2()
+        public void TestCuentaEltosUnElemento()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(1, 1);
@@ -57,7 +57,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestCuentaEltos3()
+        public void TestCuentaEltosVariosElementos()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(3, 3);
@@ -69,7 +69,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestInsertaFin1()
+        public void TestInsertaFinDesdeVacio()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista();
@@ -83,7 +83,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestInsertaFin2()
+        public void TestInsertaFinDesdeUnElemento()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(1,1);
@@ -97,7 +97,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestInsertaFin3()
+        public void TestInsertaFinDesdeVariosElementos()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(3, 3);
@@ -111,7 +111,22 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestBorraElto1()
+        public void TestInsertaFinRepetidoDesdeVariosElementos()
+        {
+            //arrange
+            Listas.Lista lis = new Listas.Lista(3, 3);
+            int n;
+            //act
+            lis.IntroducirElementoFinal(0);
+            lis.IntroducirElementoFinal(-1);
+            n = lis.CuentaEltos();
+            //assert
+            Assert.AreEqual(11, n, "No hay diez elementos en la lista.");
+            Assert.AreEqual("1:2:3:1:2:3:1:2:3:0:-1", lis.Verlista(), "La lista tiene elementos distintos a los esperados.");
+        }
+
+        [TestMethod]
+        public void TestBorraEltoDesdeVariosElementos()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(3, 3);
@@ -127,7 +142,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestBorraElto2()
+        public void TestBorraEltoNoExiste()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(3, 3);
@@ -143,7 +158,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestBorraElto3()
+        public void TestBorraEltoListaVacia()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(0, 0);
@@ -158,7 +173,7 @@ namespace Tests
             Assert.AreEqual("", lis.Verlista(), "La lista tiene elementos distintos a los esperados.");
         }
         [TestMethod]
-        public void TestBorraElto4()
+        public void TestBorraEltoBorrarUltimo()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(3, 1);
@@ -174,7 +189,23 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestnEsimo1()
+        public void TestBorraEltoBorrarDeUnElemento()
+        {
+            //arrange
+            Listas.Lista lis = new Listas.Lista(1, 1);
+            int n;
+            bool b;
+            //act
+            b = lis.borraElto(1);
+            n = lis.CuentaEltos();
+            //assert
+            Assert.IsTrue(b, "El metodo dice que no borra.");
+            Assert.AreEqual(0, n, "No hay ocho elementos en la lista.");
+            Assert.AreEqual("", lis.Verlista(), "La lista tiene elementos distintos a los esperados.");
+        }
+
+        [TestMethod]
+        public void TestnEsimoListaVariosElementos1()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(3, 3);
@@ -186,7 +217,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestnEsimo2()
+        public void TestnEsimoListaVariosElementos2()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(3, 3);
@@ -198,7 +229,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestnEsimo3()
+        public void TestnEsimoFueraDeRangoAbajo()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(3, 3);
@@ -217,7 +248,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestnEsimo4()
+        public void TestnEsimoFueraDeRangoVacia()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(0, 0);
@@ -236,7 +267,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestnEsimo5()
+        public void TestnEsimoFueraDeRangoAbajoVacia()
         {
             //arrange
             Listas.Lista lis = new Listas.Lista(0, 0);
@@ -252,18 +283,6 @@ namespace Tests
             {
 
             }
-        }
-
-        [TestMethod]
-        public void TestnEsimo6()
-        {
-            //arrange
-            Listas.Lista lis = new Listas.Lista(3,1);
-            int n;
-            //act
-            n = lis.NEsimo(2);
-            //assert
-            Assert.AreEqual(3, n, "El elemento no es el esperado");
         }
     }
 }
