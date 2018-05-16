@@ -214,17 +214,20 @@ namespace WallE
                 throw new Exception("No hay texto que leer.");
         }
 
+        //Metodo que crea las conexiones entre calles
         public void CreateStreet(string[] palabras)
         {
+            //comprueba que el vector de cadenas tiene las palabras clave y el tamaño requerido
             if (palabras.Length == 7 && palabras[2] == "place" && palabras[5] == "place")
             {
 
                 int numeroPrimerLugar = int.Parse(palabras[3]),
                     numeroSegundoLugar = int.Parse(palabras[6]);
+                //Comprueba que los lugares señalados son posibles.
                 if (numeroPrimerLugar >= 0 && numeroPrimerLugar < nPlaces && numeroSegundoLugar >= 0
                     && numeroSegundoLugar < nPlaces && numeroPrimerLugar != numeroSegundoLugar)
                 {
-
+                    //Parsea la direccion del primer lugar al segundo
                     int direccionPrimeroSegundo;
                     switch (palabras[4])
                     {
@@ -243,9 +246,10 @@ namespace WallE
                         default:
                             throw new Exception("Direccion no parseable.");
                     }
-
+                    //Debido al orden del enum Direction sabemos que la direccion contraria esta a 2 "puestos" de distancia.
                     int direccionSegundoPrimero = (direccionPrimeroSegundo + 2) % 4;
 
+                    //Comprobamos que la posicion no ha sido escrita antes o que se escribe la misma informacion
                     if ((places[numeroPrimerLugar].connections[direccionPrimeroSegundo] == -1 || places[numeroPrimerLugar].connections[direccionPrimeroSegundo] == numeroSegundoLugar) &&
                         (places[numeroSegundoLugar].connections[direccionSegundoPrimero] == -1 || places[numeroSegundoLugar].connections[direccionSegundoPrimero] == numeroPrimerLugar))
                     {
@@ -266,25 +270,32 @@ namespace WallE
             }
         }
 
+        //Metodo que crea un objeto
         public void CreateItem(string[] palabras)
         {
+            //comprueba que el vector de cadenas tiene las palabras clave y el tamaño requerido
             if (palabras[3] == "place" && palabras.Length > 5)
             {
                 int numeroItem = int.Parse(palabras[1]);
+                //Comprueba que el numeor de item es posible y que no exista ya.
                 if (numeroItem >= 0 && numeroItem < nItems && items[numeroItem].name == "")
                 {
                     items[numeroItem].name = palabras[2];
 
+                    //Creamos la descripcion
                     string aux = "";
                     for (int i = 5; i < palabras.Length; i++)
                         aux += palabras[i] + " ";
                     string comprobacion = aux;
+                    //Recortamos al inicio y al final las comillas y los espacios.
                     aux = aux.Trim('"', ' ');
+                    //Si se han recortado justo 3 caracteres todo ha ido bien.
                     if (aux.Length + 3 == comprobacion.Length)
                         items[numeroItem].description = aux;
                     else
                         throw new Exception("Faltan \" en la descripción.");
                     int numeroLugar = int.Parse(palabras[4]);
+                    //Comprobamos que el lugar existe.
                     if (numeroLugar >= 0 && numeroLugar < nPlaces)
                     {
                         places[numeroLugar].itemsInPlace.IntroducirElementoFinal(numeroItem);
@@ -303,11 +314,12 @@ namespace WallE
                 throw new Exception("Falta palabra clase \"place\".");
         }
 
+        //Metodo que devuelve la descripcion del lugar designado.
         public string GetPlaceInfo(int pl)
         {
             try
             {
-                return places[pl].description;
+                return places[pl].name + "\n" + places[pl].description;
             }
             catch
             {
@@ -315,6 +327,7 @@ namespace WallE
             }
         }
 
+        //Metodo que devuelves los posibles movimientos.
         public string GetMoves(int pl)
         {
             try
@@ -328,6 +341,7 @@ namespace WallE
                         ret += ((Direction)i).ToString("g") + ": " + places[places[pl].connections[i]].name + "\n";
                     }
                 }
+                //Recortamos el salto de linea final si s eha escrito algo.
                 if (ret != "")
                 {
                     ret = ret.Remove(ret.Length - 1, 1);
@@ -340,6 +354,7 @@ namespace WallE
             }
         }
 
+        //Metodo que devuelve el numero de items de un lugar.
         public int GetNumItems(int pl)
         {
             try
@@ -352,6 +367,7 @@ namespace WallE
             }
         }
 
+        //Metodo que devuelve la informacion del item designado.
         public string GetItemInfo(int it)
         {
             try
@@ -364,26 +380,35 @@ namespace WallE
             }
         }
 
+        //Metodo que devuelve la la informacion de los items de un lugar.
         public string GetItemsPlace(int pl)
         {
             int tam = places[pl].itemsInPlace.CuentaEltos();
             string ret="";
             for (int i = 0; i < tam; i++)
                 ret += GetItemInfo(places[pl].itemsInPlace.NEsimo(i));
+            //Recortamos el salto de linea final.
+            if (ret != "")
+            {
+                ret = ret.Remove(ret.Length - 1, 1);
+            }
             return ret;
         }
 
+        //Metodo que borra el objeto seleccionado del sitio asignado.
         public void PickItemPlace(int pl, int it)
         {
             if (!places[pl].itemsInPlace.borraElto(it))
                 throw new Exception("No existe el item.");
         }
 
+        //Metodo que añade el objeto seleccionado al sitio asignado.
         public void DropItemPlace(int pl, int it)
         {
             places[pl].itemsInPlace.IntroducirElementoInicio(it);
         }
 
+        //Metodo que devuelve el sitio que conecta en la direccion elegida del sitio designado.
         public int Move(int pl, Direction dir)
         {
             try
@@ -395,6 +420,7 @@ namespace WallE
             }
         }
 
+        //Metodo que devuelve true si el sitio designado tiene nave espacial.
         public bool isSpaceShip(int pl)
         {
             try
@@ -413,10 +439,10 @@ namespace WallE
             places = new Place[sitios];
             for (int i = 0; i < sitios; i++) {
                 places[i].connections = new int[4];
-                places[i].connections[0] = i % 2 == 0 ? -1 : 0;
-                places[i].connections[1] = (i / 2)%2==0 ? -1 : 0;
-                places[i].connections[2] = (i / 4) % 2 == 0 ? -1 : 0;
-                places[i].connections[3] = (i / 8) % 2 == 0 ? -1 : 0;
+                places[i].connections[0] = i % 2 == 0 ? -1 : i;
+                places[i].connections[1] = (i / 2)%2==0 ? -1 : (i+1)%sitios;
+                places[i].connections[2] = (i / 4) % 2 == 0 ? -1 : (i + 2) % sitios;
+                places[i].connections[3] = (i / 8) % 2 == 0 ? -1 : (i + 3) % sitios;
                 places[i].description = "Descripcion" + i;
                 places[i].name = "Nombre" + i;
                 places[i].itemsInPlace = new Lista();

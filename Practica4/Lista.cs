@@ -55,6 +55,7 @@ namespace Listas
             numeroElementos = 0;
         }
 
+        #region Tests Map
         public Lista(int limite, int rep)
         {
             primero = null;
@@ -69,7 +70,7 @@ namespace Listas
                 }
             }
         }
-
+       
         public string Verlista()
         {
             Elemento aux = primero;
@@ -86,6 +87,7 @@ namespace Listas
             }
             return texto;
         }
+        #endregion
 
         public void IntroducirElementoInicio(int dato)
         {
@@ -196,7 +198,6 @@ namespace Listas
                 return aux.Dato();
             }
         }
-
-
+       
     }
 }

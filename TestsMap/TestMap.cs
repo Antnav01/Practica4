@@ -24,7 +24,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(16, 1, 0);
-            string esperado = "North: Nombre0\nEast: Nombre0\nSouth: Nombre0\nWest: Nombre0";
+            string esperado = "North: Nombre15\nEast: Nombre0\nSouth: Nombre1\nWest: Nombre2";
             //Act
             string final = m.GetMoves(15);
             //Assert
@@ -36,7 +36,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(16, 1, 0);
-            string esperado = "East: Nombre0\nSouth: Nombre0\nWest: Nombre0";
+            string esperado = "East: Nombre15\nSouth: Nombre0\nWest: Nombre1";
             //Act
             string final = m.GetMoves(14);
             //Assert
@@ -207,7 +207,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(16, 1, 0);
-            string esperado = "0: Nombre0 Descripcion0\n";
+            string esperado = "0: Nombre0 Descripcion0";
             //Act
             string final = m.GetItemsPlace(1);
             //Assert
@@ -219,7 +219,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(16, 2, 0);
-            string esperado = "0: Nombre0 Descripcion0\n1: Nombre1 Descripcion1\n";
+            string esperado = "0: Nombre0 Descripcion0\n1: Nombre1 Descripcion1";
             //Act
             string final = m.GetItemsPlace(2);
             //Assert
@@ -281,7 +281,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(16, 2, 0);
-            string esperado = "0: Nombre0 Descripcion0\n";
+            string esperado = "0: Nombre0 Descripcion0";
             //Act
             m.PickItemPlace(2, 1);
             //Assert
@@ -331,7 +331,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(5, 2, 0);
-            string esperado = "0: Nombre0 Descripcion0\n";
+            string esperado = "0: Nombre0 Descripcion0";
             //Act
             m.DropItemPlace(0, 0);
             //Assert
@@ -343,7 +343,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(5, 2, 0);
-            string esperado = "1: Nombre1 Descripcion1\n0: Nombre0 Descripcion0\n";
+            string esperado = "1: Nombre1 Descripcion1\n0: Nombre0 Descripcion0";
             //Act
             m.DropItemPlace(1, 1);
             //Assert
@@ -355,7 +355,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(5, 3, 0);
-            string esperado = "2: Nombre2 Descripcion2\n0: Nombre0 Descripcion0\n1: Nombre1 Descripcion1\n";
+            string esperado = "2: Nombre2 Descripcion2\n0: Nombre0 Descripcion0\n1: Nombre1 Descripcion1";
             //Act
             m.DropItemPlace(2, 2);
             //Assert
@@ -423,17 +423,20 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(16, 3, 0);
-            int esperado = 0;
+            int esperado0 = 0,
+                esperado1 = 15,
+                esperado2 = 1,
+                esperado3 = 2;
             //Act
             int final0 = m.Move(15, Direction.East);
             int final1 = m.Move(15, Direction.North);
             int final2 = m.Move(15, Direction.South);
             int final3 = m.Move(15, Direction.West);
             //Assert
-            Assert.AreEqual(esperado, final0, "No tiene salida en el este.");
-            Assert.AreEqual(esperado, final1, "No tiene salida en el norte.");
-            Assert.AreEqual(esperado, final2, "No tiene salida en el sur.");
-            Assert.AreEqual(esperado, final3, "No tiene salida en el oeste.");
+            Assert.AreEqual(esperado0, final0, "No tiene salida en el este.");
+            Assert.AreEqual(esperado1, final1, "No tiene salida en el norte.");
+            Assert.AreEqual(esperado2, final2, "No tiene salida en el sur.");
+            Assert.AreEqual(esperado3, final3, "No tiene salida en el oeste.");
         }
 
         [TestMethod]
@@ -930,14 +933,11 @@ namespace TestsMap
             Map.Item esperado0;
             esperado0.name = "Objeto0";
             esperado0.description = "Descripcion0";
-            Map.Item esperado1;
-            esperado1.name = "";
-            esperado1.description = "";
             //Act
             m.CreateItem(new string[6] { "garbage", "0", "Objeto0", "place", "0", "\"Descripcion0\""});
             //Assert
             Assert.AreEqual(esperado0, m.Objeto(0), "Valor del objeto no esperado.");
-            Assert.AreEqual("0: Objeto0 Descripcion0\n", m.GetItemsPlace(0), "El objeto no esta en el sitio.");
+            Assert.AreEqual("0: Objeto0 Descripcion0", m.GetItemsPlace(0), "El objeto no esta en el sitio.");
             Assert.AreEqual("", m.GetItemsPlace(1), "El objeto esta en un sitio que no debería.");
         }
 
