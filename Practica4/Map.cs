@@ -15,12 +15,12 @@ namespace WallE
     {
         enum EstadosLectura { LeyendoLugares, LeyendoCalles, LeyendoItems, Fin };
         // items basura
-        struct Item
+        public struct Item
         {
             public string name, description;
         }
         // lugares del mapa
-        struct Place
+        public struct Place
         {
             public string name, description;
             public bool spaceShip;
@@ -129,7 +129,7 @@ namespace WallE
         }
 
         //Metodo que crea el lugar indicado y devuelve su indice.
-        int CreatePlace(string[] palabras)
+        public int CreatePlace(string[] palabras)
         {
             if (palabras.Length == 4)
             {
@@ -137,7 +137,6 @@ namespace WallE
                 lugar.connections = new int[4];
                 for (int i = 0; i < 4; i++)
                     lugar.connections[i] = -1;
-                lugar.description = "";
 
                 switch (palabras[3])
                 {
@@ -153,6 +152,7 @@ namespace WallE
                 lugar.itemsInPlace = new Lista();
 
                 lugar.name = palabras[2];
+                lugar.description = "";
 
                 int numeroLugar = int.Parse(palabras[1]);
 
@@ -214,10 +214,11 @@ namespace WallE
                 throw new Exception("No hay texto que leer.");
         }
 
-        void CreateStreet(string[] palabras)
+        public void CreateStreet(string[] palabras)
         {
             if (palabras.Length == 7 && palabras[2] == "place" && palabras[5] == "place")
             {
+
                 int numeroPrimerLugar = int.Parse(palabras[3]),
                     numeroSegundoLugar = int.Parse(palabras[6]);
                 if (numeroPrimerLugar >= 0 && numeroPrimerLugar < nPlaces && numeroSegundoLugar >= 0
@@ -265,9 +266,9 @@ namespace WallE
             }
         }
 
-        void CreateItem(string[] palabras)
+        public void CreateItem(string[] palabras)
         {
-            if (palabras[3] == "place")
+            if (palabras[3] == "place" && palabras.Length > 5)
             {
                 int numeroItem = int.Parse(palabras[1]);
                 if (numeroItem >= 0 && numeroItem < nItems && items[numeroItem].name == "")
@@ -385,12 +386,25 @@ namespace WallE
 
         public int Move(int pl, Direction dir)
         {
-            return places[pl].connections[(int)dir];
+            try
+            {
+                return places[pl].connections[(int)dir];
+            }catch
+            {
+                throw new Exception("El sitio no existe.");
+            }
         }
 
         public bool isSpaceShip(int pl)
         {
-            return places[pl].spaceShip;
+            try
+            {
+                return places[pl].spaceShip;
+            }
+            catch
+            {
+                throw new Exception("No existe el sitio.");
+            }
         }
 
         #region Tests Map
@@ -409,7 +423,7 @@ namespace WallE
 
                 for(int j= 0; j<i%(objetos+1); j++)
                 {
-                    places[i].itemsInPlace.IntroducirElementoInicio(Math.Min(j - 1, objetos-1));
+                    places[i].itemsInPlace.IntroducirElementoFinal(Math.Min(j, objetos-1));
                 }
                 places[i].spaceShip = i % 2 == 0;                
             }
@@ -421,6 +435,16 @@ namespace WallE
             }
             nPlaces = sitios;
             nItems = objetos;
+        }
+
+        public Place Sitio(int pl)
+        {
+            return places[pl];
+        }
+
+        public Item Objeto(int pl)
+        {
+            return items[pl];
         }
         #endregion
     }
