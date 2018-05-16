@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Amparo Rubio Bellón
+//Carlos Durán Domínguez
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

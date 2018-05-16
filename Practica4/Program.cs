@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Amparo Rubio Bellón
+//Carlos Durán Domínguez
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -245,38 +248,30 @@ namespace Practica4
             {
                 throw new Exception("User doesn't exist.");
             }
-            try
-            {
-                //Escribe la primera escena.
-                Console.WriteLine(m.GetPlaceInfo(w.GetPosition()));
-                Console.WriteLine();
-                Console.WriteLine(m.GetMoves(w.GetPosition()));
-                Console.WriteLine();
-                
-                string historial = "";
-                while (!archivo.EndOfStream)
-                {
-                    string comando = archivo.ReadLine();
-                    Console.WriteLine(">" + comando);
+            //Escribe la primera escena.
+            Console.WriteLine(m.GetPlaceInfo(w.GetPosition()));
+            Console.WriteLine();
+            Console.WriteLine(m.GetMoves(w.GetPosition()));
+            Console.WriteLine();
 
-                    try
-                    {
-                        ProcesaInput(comando, w, m, ref historial);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                        Console.WriteLine();
-                    }
-                }
-                archivo.Close();
-                return historial;
-            }
-            catch
+            string historial = "";
+            while (!archivo.EndOfStream)
             {
-                archivo.Close();
-                throw new Exception("Command error.");
+                string comando = archivo.ReadLine();
+                Console.WriteLine(">" + comando);
+
+                try
+                {
+                    ProcesaInput(comando, w, m, ref historial);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine();
+                }
             }
+            archivo.Close();
+            return historial;
 
         }
 

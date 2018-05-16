@@ -1,0 +1,11 @@
+items
+info
+pick 0
+pick 1
+items
+bag
+drop 0
+drop 1
+bag
+go east
+go north
