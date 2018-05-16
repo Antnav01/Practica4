@@ -64,14 +64,11 @@ namespace WallE
         {
             int tam = bag.CuentaEltos();
             string ret="";
-            for(int i =0; i<tam; i++)
+            if(tam>0)
+                ret += m.GetItemInfo(bag.NEsimo(0));
+            for(int i =1; i<tam; i++)
             {
-                ret += m.GetItemInfo(bag.NEsimo(i));
-            }
-            //Recorta el salto de linea final
-            if (ret != "")
-            {
-                ret = ret.Remove(ret.Length - 1, 1);
+                ret += "\n"+m.GetItemInfo(bag.NEsimo(i));
             }
             return ret;
         }

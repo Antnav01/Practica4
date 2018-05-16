@@ -12,17 +12,16 @@ namespace Practica4
 {
     enum Comando { Go, Pick, Drop, Items, Info, Bag, Quit };
 
-    class Program
+    public class Program
     {
-        static TextInfo myTI;
+        //Objeto que sirve para el parseo del enum Comandos
+        public static TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
         static void Main(string[] args)
         {
             //Creamos el mapa con los 10 sitio y los tres objetos.
             Map mapa = new Map(10, 3);
             mapa.ReadMap("madrid.map");
             WallE.WallE wallE = new WallE.WallE();
-            //Objeto que sirve para el parseo del enum Comandos
-            myTI = new CultureInfo("en-US", false).TextInfo;
 
             string comandos = "";
             string usuario;
@@ -93,7 +92,7 @@ namespace Practica4
         }
 
         //Metodo que lee un comando y modifica el mapa y a WallE en consecuencia.
-        static void ProcesaInput(string com, WallE.WallE w, Map m, ref string historial)
+        public static void ProcesaInput(string com, WallE.WallE w, Map m, ref string historial)
         {
             //Troceamos el comando
             string[] comandos = Regex.Split(com, " ");
@@ -229,15 +228,13 @@ namespace Practica4
                         throw new Exception("Invalid command.");
                     }
                     break;
-                default:
-                    throw new Exception("Invalid command.");
             }
 
             Console.WriteLine();
             historial += com + "\n";
         }
 
-        static string LeerHistorial(string nombreArchivo, WallE.WallE w, Map m)
+        public static string LeerHistorial(string nombreArchivo, WallE.WallE w, Map m)
         {
             StreamReader archivo;
             try
@@ -261,7 +258,16 @@ namespace Practica4
                 {
                     string comando = archivo.ReadLine();
                     Console.WriteLine(">" + comando);
-                    ProcesaInput(comando, w, m, ref historial);
+
+                    try
+                    {
+                        ProcesaInput(comando, w, m, ref historial);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine();
+                    }
                 }
                 archivo.Close();
                 return historial;

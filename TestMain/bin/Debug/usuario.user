@@ -1,0 +1,27 @@
+info
+bag
+pick 3
+drop 0
+codo
+items
+pick 0
+pick 1
+go west
+go west
+go north
+items
+go north
+go east
+info
+go south
+go south
+go south
+go east
+go east
+go south
+go north
+go north
+go north
+go north
+go south
+go east

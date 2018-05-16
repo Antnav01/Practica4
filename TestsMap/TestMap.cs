@@ -144,7 +144,7 @@ namespace TestsMap
         {
             //Arrange
             Map m = new Map(16, 1, 0);
-            string esperado = "0: Nombre0 Descripcion0\n";
+            string esperado = "0: Nombre0 Descripcion0";
             //Act
             string final = m.GetItemInfo(0);
             //Assert
@@ -715,7 +715,7 @@ namespace TestsMap
         public void TestCreateStreetSobreescritura()
         {
             //Arrange
-                        Map m = new Map(2, 1);
+            Map m = new Map(3, 1);
             m.CreatePlace(new string[4] { "place", "0", "Nombre0", "noSpaceShip" });
             m.CreatePlace(new string[4] { "place", "1", "Nombre1", "spaceShip" });
             m.CreateStreet(new string[7] { "street", "0", "place", "0", "north", "place", "1" });

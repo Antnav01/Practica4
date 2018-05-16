@@ -9,7 +9,6 @@ C:\Users\usuario_local\Documents\GitHub\Practica4\Practica4\bin\Debug\Practica4.
 C:\Users\usuario_local\Documents\GitHub\Practica4\Practica4\bin\Debug\Practica4.exe
 C:\Users\usuario_local\Documents\GitHub\Practica4\Practica4\bin\Debug\Practica4.pdb
 C:\Users\usuario_local\Documents\GitHub\Practica4\Practica4\obj\Debug\Practica4.csprojResolveAssemblyReference.cache
-C:\Users\usuario_local\Documents\GitHub\Practica4\Practica4\obj\Debug\Practica4.csproj.CoreCompileInputs.cache
 C:\Users\usuario_local\Documents\GitHub\Practica4\Practica4\obj\Debug\Practica4.exe
 C:\Users\usuario_local\Documents\GitHub\Practica4\Practica4\obj\Debug\Practica4.pdb
 C:\Users\Wurt\Documents\GitHub\Practica4\Practica4\bin\Debug\Practica4.exe.config

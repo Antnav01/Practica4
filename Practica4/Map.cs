@@ -84,7 +84,7 @@ namespace WallE
                                     places[numeroLugar].description = ReadDescription(archivo);
                                     archivo.ReadLine();
                                 }
-                                catch
+                                catch(Exception e)
                                 {
                                     throw new Exception("Error al leer un lugar.");
                                 }
@@ -372,7 +372,7 @@ namespace WallE
         {
             try
             {
-                return it + ": " + items[it].name + " " + items[it].description + "\n";
+                return it + ": " + items[it].name + " " + items[it].description;
             }
             catch
             {
@@ -385,13 +385,10 @@ namespace WallE
         {
             int tam = places[pl].itemsInPlace.CuentaEltos();
             string ret="";
-            for (int i = 0; i < tam; i++)
-                ret += GetItemInfo(places[pl].itemsInPlace.NEsimo(i));
-            //Recortamos el salto de linea final.
-            if (ret != "")
-            {
-                ret = ret.Remove(ret.Length - 1, 1);
-            }
+            if(tam>0)
+                ret += GetItemInfo(places[pl].itemsInPlace.NEsimo(0));
+            for (int i = 1; i < tam; i++)
+                ret += "\n" + GetItemInfo(places[pl].itemsInPlace.NEsimo(i));
             return ret;
         }
 
